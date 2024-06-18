@@ -1,0 +1,19 @@
+def main():
+    while True:
+        try:
+            X = float(input("Please input a number for x: "))
+            if X == 
+            Y = int(input("Please input a +, -, *, or / for y: "))
+            Z = int(input("Please input a number for z: "))
+
+            print(f"Your equasion: {X} {Y} {Z}")
+            
+
+
+
+
+
+
+
+
+main()
