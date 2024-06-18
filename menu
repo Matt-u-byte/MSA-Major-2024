@@ -1,0 +1,30 @@
+def main():
+    print("Please select a menu item")
+    prices = [4.00, 7.50, 8.50, 11.00, 8.50, 8.50, 9.50, 3.00, 8.00]
+    menu_items = ["Baja Taco", "Burrito", "Bowl", "Nachos", "Quesadilla", "Super Burrito", "Super Quesadilla", "Taco", "Tortilla Salad"]
+    for index in range(len(prices)):
+        print(f"{index+1}. {menu_items[index]}: {prices[index]}")
+    
+    menu_pricing = {
+        "Baja Taco": 4.00,
+        "Burrito": 7.50,
+        "Bowl": 8.50,
+        "Nachos": 11.00,
+        "Quesadilla": 8.50,
+        "Super Burrito": 8.50,
+        "Super Quesadilla": 9.50,
+        "Taco": 3.00,
+        "Tortilla Salad": 8.00
+    }
+    total = 0
+
+    while True:
+        selection = int(input("Enter the number of your selection: "))
+        if selection >= 1 and selection <= 9:
+            selected_item = menu_items[int(selection) - 1]
+            total += menu_pricing[selected_item]
+            print(f"You selected {selected_item} for ${menu_pricing[selected_item]}. Your total is ${total}.")
+        else:
+            print("Invalid selection. Please try again.")
+
+main()
