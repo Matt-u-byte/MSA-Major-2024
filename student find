@@ -1,0 +1,69 @@
+import student as stu
+import datetime
+
+"""
+Function to write error log file
+Input: error message 
+Output: none
+"""
+
+def write_to_error_log(error_message):
+    try:
+        log_file = open("error_log,txt", "a")
+        log_file.write(f"{datetime.now()}: {error_message}\n")
+        log_file.close()
+    except Exception as err:
+        print(err)
+
+
+def load_students(file_name):
+    #create an empty list to store student data
+    list_of_students = []
+    #open the file
+    stu_file = open(file_name, "r")
+
+    next(stu_file)
+
+    line_number = 1
+    for line_of_data in stu_file:
+        line_number += 1
+
+        #split each line at the comma to get the values
+        students = line_of_data.split(",")
+
+        try:
+            if len(students) != 6:
+                raise Exception(f"There is an error in your data file on line {line_number}")
+        except Exception as err:
+            print(str(err))
+            continue
+
+        try:
+            first_name = students[0]
+            last_name = students[1]
+            major = students[2]
+            credit_hours = int(students[3])
+            gpa = float(students[4])
+            ID_number = int(students[5])
+        except Exception as err:
+            print(f"Error: {err} on line {line_number}")
+            continue
+
+        new_stu = stu.Student(first_name, last_name, major, credit_hours, gpa, ID_number)
+        
+        list_of_students.append(new_stu)
+    
+    #close file and return the list of students
+    stu_file.close()
+    return list_of_students
+
+def main():
+    student_list = load_students("students.csv")
+
+    for student in student_list:
+        student.print_info()
+
+main()
+
+
+
